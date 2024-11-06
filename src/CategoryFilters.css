@@ -1,0 +1,22 @@
+.category-list{
+    position: absolute;
+    top: 60px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    list-style: none;
+    gap: 20px;
+    overflow: clip;
+    background-color: #232F3E;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    padding-left: 20px;
+}
+.category-item{
+    text-wrap: nowrap;
+    display: flex;
+    align-items: center;
+}
