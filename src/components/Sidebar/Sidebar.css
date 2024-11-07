@@ -57,7 +57,7 @@
 
 
 .content-container{
-    border: 1px solid gray;
+    border-bottom: 1px solid gray;
 }
 .content-title{
     font-size: 18px;
