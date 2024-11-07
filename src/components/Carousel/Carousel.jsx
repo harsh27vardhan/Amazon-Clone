@@ -14,15 +14,15 @@ const Carousel = () => {
   // images.forEach((image, index) => {
   //   image.style.transform = `translatex(${index * 100}%)`;
   // });
-  let interval = setInterval(moveForward, 5000);
+  // let interval = setInterval(moveForward, 5000);
   function moveBack() {
-    clearInterval(interval);
+    // clearInterval(interval);
     currentImg++;
     currentImg %= 7;
     moveImg();
   }
   function moveForward() {
-    clearInterval(interval);
+    // clearInterval(interval);
     currentImg--;
     currentImg = (currentImg + 7) % 7;
     moveImg();
@@ -32,7 +32,7 @@ const Carousel = () => {
     images.forEach((image, index) => {
       image.style.transform = `translatex(${(index - currentImg) * 100}%)`;
     });
-    interval = setInterval(moveForward, 5000);
+    // interval = setInterval(moveForward, 5000);
   }
   return (
     <div className="carousel-container">
