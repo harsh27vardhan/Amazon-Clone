@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import HomeCard from "./HomeCard";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Carousel from "./components/Carousel/Carousel";
+import Signin from "./components/SignIn/Signin";
 
 import item1 from "./assets/item1.jpg";
 import item2 from "./assets/item2.jpg";
@@ -12,29 +13,37 @@ import item3 from "./assets/item3.jpg";
 import item4 from "./assets/item4.jpg";
 import { useState } from "react";
 
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+const router = createBrowserRouter([
+  { path: "/", element: <App /> },
+  { path: "/signin", element: <Signin /> },
+]);
+
 function App() {
   const [open, setSidebar] = useState(false);
   return (
     <>
-      <div className="App">
-        <Header />
-        <CategoryFilters open={open} setSidebar={setSidebar} />
-        <Carousel />
-        <div className="container">
-          <div className="home-card-container">
-            {[data, data, data, data, data, data, data, data]
-              .flat() // Flat converts the 2d or 3d array into 1d array OR can use spread operator multipe times in ...data, ...data
-              .map((currentData, index) => (
-                <HomeCard
-                  key={"HomeCard-" + index}
-                  xyz="abc"
-                  data={currentData}
-                />
-              ))}
+      <RouterProvider router={router}>
+        <div className="App">
+          <Header />
+          <CategoryFilters open={open} setSidebar={setSidebar} />
+          <Carousel />
+          <div className="container">
+            <div className="home-card-container">
+              {[data, data, data, data, data, data, data, data]
+                .flat() // Flat converts the 2d or 3d array into 1d array OR can use spread operator multipe times in ...data, ...data
+                .map((currentData, index) => (
+                  <HomeCard
+                    key={"HomeCard-" + index}
+                    xyz="abc"
+                    data={currentData}
+                  />
+                ))}
+            </div>
           </div>
         </div>
-      </div>
-      <Sidebar open={open} setSidebar={setSidebar} />
+        <Sidebar open={open} setSidebar={setSidebar} />
+      </RouterProvider>
     </>
   );
 }

@@ -20,7 +20,7 @@
 .carousel-img-container{
     /* border: 2px solid black; */
     width: 95%;
-    /* transition: 1s; */
+    transition: 1s;
 }
 .carousel-img-container img{
     width: 100%;
@@ -31,7 +31,7 @@
 }
 .carousel-btn{
     position: absolute;
-    top: 30%;
+    top: 15vh;
     font-size: 3rem;
     line-height: 25px;
     background-color: transparent;
