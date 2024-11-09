@@ -1,5 +1,5 @@
 import React from "react";
-import "./SignIn.css";
+import "./Signin.css";
 import amazonlogo from "../../assets/amazoncom_black.svg";
 
 const Signin = () => {
