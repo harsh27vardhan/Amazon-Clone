@@ -1,5 +1,8 @@
 import React from "react";
 import "./Sidebar.css";
+import { Link } from "react-router-dom";
+
+import accountLogo from "../../assets/signin/account.svg";
 
 const Sidebar = ({ open, setSidebar }) => {
   function closeSidebar() {
@@ -9,7 +12,10 @@ const Sidebar = ({ open, setSidebar }) => {
     <div className="parent-sidebar">
       <div className="sidebar-background"></div>
       <div className="sidebar-container">
-        <button className="slider-sign-in">Hello, Sign In</button>
+        <button className="slider-sign-in">
+          <img src={accountLogo} alt="" />
+          <Link to="/signin">Hello, Sign In</Link>
+        </button>
         <button className="cross-sidebar" onClick={closeSidebar}>
           X
         </button>
