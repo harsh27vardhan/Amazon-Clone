@@ -1,5 +1,4 @@
 import React from "react";
-import "./CategoryFilters.css";
 import menuLogo from "./assets/menu.svg";
 const items = [
   "Fresh",
@@ -25,13 +24,20 @@ const CategoryFilters = ({ open, setSidebar }) => {
     setSidebar(true);
   }
   return (
-    <ul className="category-list">
-      <li className="category-item all" onClick={openSidebar}>
+    <ul className="category-list flex justify-start items-center w-[100%] h-[40px] list-none gap-[20px] overflow-clip bg-[#232F3E] text-[14px] font-[400] text-white">
+      <li
+        className="category-item text-nowrap flex items-center cursor-pointer all my-auto mx-[20px] font-[700] gap-[4px]"
+        onClick={openSidebar}
+      >
         <img src={menuLogo} alt="menu-icon" />
-        All
+        <span>All</span>
       </li>
       {items.map((item) => {
-        return <li className="category-item">{item}</li>;
+        return (
+          <li className="category-item text-nowrap flex items-center cursor-pointer">
+            {item}
+          </li>
+        );
       })}
       {/* This also Works
         {items.map((item)=>

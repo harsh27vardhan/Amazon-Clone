@@ -64,7 +64,7 @@
     outline : 1px solid black;
 }
 .email-container input:focus{
-    box-shadow: 0px 0px 5px aqua;
+    box-shadow: 0px 0px 7px aqua;
 }
 .continue-btn{
     width: 100%;

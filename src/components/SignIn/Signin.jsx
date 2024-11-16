@@ -3,6 +3,17 @@ import "./Signin.css";
 import amazonlogo from "../../assets/amazoncom_black.svg";
 
 const Signin = () => {
+  function validation() {
+    const inpVal = document.querySelector("#email-inp").value;
+    const pattern = /^[a-zA-Z0-9]+@explorin.io$/;
+    if (pattern.test(inpVal)) {
+      document.querySelector(".signin-error-msg").innerHTML = "Correct";
+      4;
+    } else {
+      document.querySelector(".signin-error-msg").innerHTML =
+        "There is a problem";
+    }
+  }
   return (
     <div className="sign-in-container">
       <img src={amazonlogo} alt="" className="sign-in-logo" />
@@ -14,7 +25,14 @@ const Signin = () => {
             <input id="email-inp" type="text" />
             <p className="signin-error-msg"></p>
           </div>
-          <button type="submit" className="continue-btn">
+          <button
+            type="submit"
+            className="continue-btn"
+            onClick={(event) => {
+              event.preventDefault();
+              validation();
+            }}
+          >
             Continue
           </button>
           <p>
