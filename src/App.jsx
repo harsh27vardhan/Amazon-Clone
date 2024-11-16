@@ -19,7 +19,7 @@ function App() {
   const [open, setSidebar] = useState(false);
   const [theme, setTheme] = useState("light");
   const [totalCartCount, setCartCount] = useState(
-    JSON.parse(localStorage.getItem("cart")).reduce((acc, curr) => {
+    JSON.parse(localStorage.getItem("cart"))?.reduce((acc, curr) => {
       return acc + curr.quantity;
     }, 0)
   );
