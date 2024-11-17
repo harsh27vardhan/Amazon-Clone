@@ -15,8 +15,6 @@ const Cart = () => {
   }
   return (
     <>
-      <Header></Header>
-      <CategoryFilters />
       <div className="card-container bg-white">
         <div className="shopping-cart-container flex justify-between p-4">
           <h2 className="cart-title text-[26px] font-[700]">Shooping Cart</h2>
