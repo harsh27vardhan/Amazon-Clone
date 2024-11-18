@@ -69,22 +69,25 @@ function removeFromCart(product_to_remove, totalCartCount, setCartCount) {
   // others = cart.filter(id != product_to_remove.id)
   // updated_cart = [...others, product_to_remove];
 }
-
-
 const ProductCard = ({ data, totalCartCount, setCartCount }) => {
   const themeData = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   // Handling Dynamic Routing.
-  const [redirectTo, setRedirectTo] = useState(null);
+  // const [redirectTo, setRedirectTo] = useState(null);
   const handleClick = (newPath) => {
     // Open a new Window for that product.
-    window.open(newPath, '_blank');
+    // window.open(newPath, '_blank');
+
     // setRedirectTo(newPath);
     // It changes the url completely, and we can't go back from that position.
+    console.log(newPath);
+    // <navigate to={newPath} replace={true} />
+    navigate(newPath);
   }
-  if (redirectTo) {
-    return <Navigate to={redirectTo} replace={true} />
-  }
+  // if (redirectTo) {
+  //   return <Navigate to={redirectTo} replace={true} />
+  // }
   // console.log(themeData);
   return (
     <div className="component flex flex-col justify-center items-center w-[150px] gap-[8px]" onClick={(e) => { handleClick(`/product/${data.product_id}`) }}>
