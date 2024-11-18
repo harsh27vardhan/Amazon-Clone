@@ -1,6 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import sampleData from "../../constants.js";
 import { ThemeContext } from "../../App.jsx";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Product from "../../DynamicProduct.jsx";
 
 function addToCart(product_to_add) {
   const cart = localStorage.getItem("cart")
@@ -48,11 +51,14 @@ function removeFromCart(product_to_remove, totalCartCount, setCartCount) {
   const present = cart.find((item) => {
     return item.product_id === product_to_remove.product_id;
   });
-  if (present && present.quantity > 0) {
+  if (present && present.quantity > 1) {
     present.quantity -= 1;
     localStorage.setItem("cart", JSON.stringify([...newCart, present]));
     setCartCount(totalCartCount - 1);
-  } else {
+  } else if (present && present.quantity == 0) {
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  }
+  else {
     localStorage.setItem("cart", JSON.stringify(newCart));
   }
   //remove from local storage
@@ -64,15 +70,29 @@ function removeFromCart(product_to_remove, totalCartCount, setCartCount) {
   // updated_cart = [...others, product_to_remove];
 }
 
+
 const ProductCard = ({ data, totalCartCount, setCartCount }) => {
   const themeData = useContext(ThemeContext);
+
+  // Handling Dynamic Routing.
+  const [redirectTo, setRedirectTo] = useState(null);
+  const handleClick = (newPath) => {
+    // Open a new Window for that product.
+    window.open(newPath, '_blank');
+    // setRedirectTo(newPath);
+    // It changes the url completely, and we can't go back from that position.
+  }
+  if (redirectTo) {
+    return <Navigate to={redirectTo} replace={true} />
+  }
   // console.log(themeData);
   return (
-    <div className="component flex flex-col justify-center items-center w-[150px] gap-[8px]">
+    <div className="component flex flex-col justify-center items-center w-[150px] gap-[8px]" onClick={(e) => { handleClick(`/product/${data.product_id}`) }}>
       <img src={data.img_link} alt="" className="w-[100%]" />
       <button
         className="add p-[4px] w-[100%] bg-[rgb(255,165,0)] text-white text-[1rem] rounded-[15px] cursor-pointer"
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           addToCart(data);
           // console.log(totalCartCount);
           setCartCount(totalCartCount + 1);
@@ -83,7 +103,8 @@ const ProductCard = ({ data, totalCartCount, setCartCount }) => {
       </button>
       <button
         className="minus p-[4px] w-[100%] bg-[rgb(255,165,0)] text-white text-[1rem] rounded-[15px] cursor-pointer"
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           removeFromCart(data, totalCartCount, setCartCount);
         }}
       >
