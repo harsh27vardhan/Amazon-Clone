@@ -24,14 +24,17 @@ function App() {
   console.log(totalCartCount);
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <Header totalCartCount={totalCartCount} setCartCount={setCartCount} />
-      <CategoryFilters open={open} setSidebar={setSidebar} />
-      {/* <div className="App">
+      {/* For sidebar not to be excluded beside the main page, else where we can scroll to the home page even with the sidebar open */}
+      <div className="overflow-auto max-h-[100vh]">
+        <Header totalCartCount={totalCartCount} setCartCount={setCartCount} />
+        <CategoryFilters open={open} setSidebar={setSidebar} />
+        {/* <div className="App">
         <Home totalCartCount={totalCartCount} setCartCount={setCartCount} />
       </div> */}
-      <Outlet />
-      {/* Renders the child according to the path */}
-      <Sidebar open={open} setSidebar={setSidebar} />
+        <Outlet />
+        {/* Renders the child according to the path */}
+        <Sidebar open={open} setSidebar={setSidebar} />
+      </div>
     </ThemeContext.Provider>
   );
 }
